@@ -24,7 +24,7 @@ type app struct {
 func serve(ctx context.Context, app *app) error {
     // The hello listener will listen on a random port chosen by the operating
     // system. This behavior can be changed in the config file.
-    fmt.Printf("hello listener available on %v\n", app.server)
+    fmt.Printf("server listen on %v\n", app.server)
 
     // Serve the /hello endpoint.
     http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
