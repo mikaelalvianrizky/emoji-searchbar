@@ -14,14 +14,18 @@ func main() {
     }
 }
 
-// app is the main component of the application. weaver.Run creates
-// it and passes it to serve.
 type app struct{
     weaver.Implements[weaver.Main]
+    reverser weaver.Ref[Reverser]
 }
 
-// serve is called by weaver.Run and contains the body of the application.
-func serve(context.Context, *app) error {
-    fmt.Println("Hello")
+func serve(ctx context.Context, app *app) error {
+    // Call the Reverse method.
+    var r Reverser = app.reverser.Get()
+    reversed, err := r.Reverse(ctx, "!dlroW ,olleH")
+    if err != nil {
+        return err
+    }
+    fmt.Println(reversed)
     return nil
 }
