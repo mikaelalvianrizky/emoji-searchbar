@@ -35,9 +35,10 @@ please file an issue at https://github.com/ServiceWeaver/weaver/issues.
 
 func init() {
 	codegen.Register(codegen.Registration{
-		Name:  "github.com/ServiceWeaver/weaver/Main",
-		Iface: reflect.TypeOf((*weaver.Main)(nil)).Elem(),
-		Impl:  reflect.TypeOf(app{}),
+		Name:      "github.com/ServiceWeaver/weaver/Main",
+		Iface:     reflect.TypeOf((*weaver.Main)(nil)).Elem(),
+		Impl:      reflect.TypeOf(app{}),
+		Listeners: []string{"server"},
 		LocalStubFn: func(impl any, caller string, tracer trace.Tracer) any {
 			return main_local_stub{impl: impl.(weaver.Main), tracer: tracer}
 		},
@@ -45,7 +46,7 @@ func init() {
 		ServerStubFn: func(impl any, addLoad func(uint64, float64)) codegen.Server {
 			return main_server_stub{impl: impl.(weaver.Main), addLoad: addLoad}
 		},
-		RefData: "⟦5bf9566a:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→search-emoji/Searcher⟧\n",
+		RefData: "⟦5bf9566a:wEaVeReDgE:github.com/ServiceWeaver/weaver/Main→search-emoji/Searcher⟧\n⟦63277f23:wEaVeRlIsTeNeRs:github.com/ServiceWeaver/weaver/Main→server⟧\n",
 	})
 	codegen.Register(codegen.Registration{
 		Name:  "search-emoji/Reverser",
