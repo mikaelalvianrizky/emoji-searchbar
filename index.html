@@ -202,18 +202,12 @@
             // Perform a query when the "Search" button is clicked.
             button.addEventListener('click', perform_search);
 
-            // Perform a query when the user hits the "Enter" key.
-            query.addEventListener('keypress', (e) => {
-                if (e.key == 'Enter' && strip(query.value) != "") {
-                    perform_search();
-                }
-            });
-
             // Disable the "Search" button when the query is empty.
             query.addEventListener('input', (e) => {
                 if (strip(query.value) == "") {
                     button.disabled = true;
                 } else {
+                    perform_search();
                     button.disabled = false;
                 }
             });
